@@ -17,6 +17,7 @@ const array = [
    [Keyboard.text('Актуальное меню')],
    [Keyboard.text('English menu')],
    [Keyboard.text('Наш тг-канал')],
+   [Keyboard.text('Отзывы')],
 ];
 const keyboard = Keyboard.from(array).resized().persistent();
 
@@ -30,7 +31,7 @@ bot.on('message:text', async (ctx) => {
          {
             const parsedString = ctx.emoji`К Вашему вниманию ${'mage_light_skin_tone'}`;
             if (ctx.chatId) {
-               const file = readerFileGrammy();
+               const file = readerFileGrammy(['./assets/luna-menu-rus.jpg']);
                await ctx.api.sendMessage(ctx.chatId, parsedString);
                await ctx.api.sendPhoto(ctx.chatId, file);
             }
@@ -40,7 +41,7 @@ bot.on('message:text', async (ctx) => {
          {
             const parsedString = ctx.emoji`To your attention`;
             if (ctx.chatId) {
-               const file = readerFileGrammy();
+               const file = readerFileGrammy(['./assets/luna-menu-eng.jpg']);
                await ctx.api.sendMessage(ctx.chatId, parsedString);
                await ctx.api.sendPhoto(ctx.chatId, file);
             }
@@ -49,6 +50,11 @@ bot.on('message:text', async (ctx) => {
       case 'Наш тг-канал':
          {
             ctx.reply('https://t.me/moonontheroof');
+         }
+         break;
+      case 'Отзывы':
+         {
+            ctx.reply('В разработке...');
          }
          break;
       default: {
